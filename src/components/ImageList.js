@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ImageList.css';
 import ImageCard from './ImageCard';
 
@@ -10,6 +10,10 @@ const ImageList = props => {
   ));
 
   return <div className="image-list">{images}</div>;
+};
+
+ImageList.propTypes = {
+  images: PropTypes.array,
 };
 
 export default ImageList;

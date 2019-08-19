@@ -1,7 +1,5 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ImageCard extends React.Component {
   constructor(props) {
@@ -18,21 +16,25 @@ class ImageCard extends React.Component {
 
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
-
     const spans = Math.ceil(height / 10);
 
     this.setState({ spans });
   };
 
   render() {
-    const { description, urls } = this.props.image;
-
+    const { image } = this.props;
+    const { description, urls } = image;
+    const { spans } = this.state;
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+      <div style={{ gridRowEnd: `span ${spans}` }}>
         <img ref={this.imageRef} alt={description} src={urls.regular} />
       </div>
     );
   }
 }
+
+ImageCard.propTypes = {
+  image: PropTypes.object,
+};
 
 export default ImageCard;
