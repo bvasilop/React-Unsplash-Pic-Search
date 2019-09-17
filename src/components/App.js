@@ -7,13 +7,19 @@ import SearchBar from './SearchBar';
 class App extends React.Component {
   state = { images: [] };
 
+  componentDidMount() {
+    this.onSearchSubmit('seattle');
+  }
+
   onSearchSubmit = async term => {
-    const response = await unsplash.get('/search/photos', {
-      params: { query: term },
+    const response = await unsplash.get('/search/photos?per_page=50', {
+      params: {
+        query: term,
+      },
     });
 
     this.setState({ images: response.data.results });
-    // console.log(response.data.results);
+    console.log(response.data.results);
   };
 
   render() {
